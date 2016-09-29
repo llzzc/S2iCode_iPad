@@ -1,0 +1,131 @@
+//
+//  S2icode_iPad.pch
+//  S2icode_iPad_ios
+//
+//  Created by zzc_copy on 16/9/29.
+//  Copyright © 2016年 zzc_copy. All rights reserved.
+//
+
+#ifndef S2icode_iPad_pch
+#define S2icode_iPad_pch
+
+#import <UIKit/UIKit.h>
+
+#import "S2iTool.h"
+#import "S2iImageManager.h"
+#import "S2iClientManager.h"
+#import "S2iXmlManager.h"
+#import "S2iConfig.h"
+#import "UIView+Ext.h"
+
+
+//S2i背景颜色RBG值: 0 57 33
+
+//#define SERVER_API_CLIENT_INIT_URL @"http://svc.s2icode.com/api/ClientInit"
+
+//1. 日志开关
+#ifdef DEBUG
+#define S2iLog(...) NSLog(__VA_ARGS__)
+#else
+#define S2iLog(...)
+#endif
+
+
+#define S2iInterfacePwd @"S2iIosPdtDecode@S2icode.com"
+#define AppLanguage @"appLanguage"
+#define ChineseFlag @"zh-Hans"
+#define EnglishFlag @"en"
+#define S2iLocalizedString(key, comment) \
+[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:@"" table:nil]
+
+#define LoadString(str) S2iLocalizedString(str, nil)
+
+//2. 判断是否是IOS7
+#define IOS7 ([[[UIDevice currentDevice] systemVersion ] floatValue] >= 7.0)
+#define IOS8 ([[[UIDevice currentDevice] systemVersion ] floatValue] >= 8.0)
+
+
+//3. 自定义颜色
+#define S2iColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define S2iColorAlpha(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define S2iColorRef(r, g, b) [[UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0] CGColor]
+
+
+
+//4. 加载JSON对象
+#define S2iJson(name) [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@#name withExtension:nil]] options:NSJSONReadingAllowFragments error:nil]
+
+
+//5. 全局背景色
+#define S2iGlobalBg [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]]
+
+
+
+
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+//6. 判断机型
+#define isIPhone4 (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define isIPhone5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define isIPhone6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define isIPonne6Plus (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+
+
+//7. 物理设备宽/高
+//#define S2iDeviceW [UIScreen mainScreen].bounds.size.width
+//#define S2iDeviceH [UIScreen mainScreen].bounds.size.height
+
+//5S宽高比例
+
+#define WIDTH_5S_SCALE 320.0 * [UIScreen mainScreen].bounds.size.width
+#define HEIGHT_5S_SCALE 568.0 * [UIScreen mainScreen].bounds.size.height
+
+//状态栏和导航栏高度
+#define NAV_HEIGHT self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height
+
+// RGB definitions
+#define ASSIS_INFO_BG_YELLOW 0xa9932e
+#define ASSIS_INFO_BG_GREEN 0x127b55
+
+
+// slavi parameter
+/*
+ #define FOCUS_EMETRIC_THRESHOLD 0.700 // define threshold here
+ #define MINDIST_TO_THRESHOLD 20 // min. distance from local maxima to threshold
+ #define MINDIFF_BLACK_WHITE  30 // min. distance between local maxima positions
+ #define MAXQUOT_AMPLITUDE_BW  5 // max. quotient between local maxima amplitude (histogram)
+ #define MINIMUM_EDGE_ENERGY  3 // min. energy of edges in central sector (check for S2i symbols)
+ */
+
+
+
+
+#define N_TAB_BAR_H 49             //tabBar高度49
+
+
+#define S2I_IMAGE_RATIO (9.0/8.0)
+/**
+ *  微官网
+ */
+
+#define STR_WEBSITE_URL @"http://www.s2icode.cn"
+#define STR_OEM_WEBSITE_URL @"http://s.s2icode.com/1975"
+
+#define GEHEIM_DEBUG_CODE @"31415926"
+
+#define MULTI_PREVIEW_IMAGES 1
+
+#define S2I_WEBSERVICE_URL @"http://svc.s2icode.com"
+#define S2I_TEST_WEBSERVICE_URL @"https://192.168.1.191"
+
+
+#endif /* S2icode_iPad_pch */
